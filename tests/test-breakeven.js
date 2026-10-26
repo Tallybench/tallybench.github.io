@@ -1,0 +1,27 @@
+// Sanity tests for the break-even maths. Run: node tests/test-breakeven.js
+global.window = {};
+global.document = { getElementById: () => null };
+require('../break-even.js');
+const { compute } = global.window.TallybenchBreakEven;
+const near = (a, b, e = 1e-6) => Math.abs(a - b) < e;
+let fails = 0;
+const check = (n, ok) => { if (!ok) { fails++; console.log('FAIL', n); } else console.log('ok  ', n); };
+let r = compute({ fixed: 2000, price: 50, variable: 20, target: 0 });
+check('contribution 30', near(r.contribution, 30));
+check('units rounds up to 67', r.units === 67);
+check('revenue 3350', near(r.revenue, 3350));
+check('margin 60%', near(r.contributionPct, 60));
+r = compute({ fixed: 2000, price: 50, variable: 20, target: 1000 });
+check('target units exactly 100', r.unitsTarget === 100);
+check('target revenue 5000', near(r.revenueTarget, 5000));
+r = compute({ fixed: 0, price: 10, variable: 4, target: 0 });
+check('zero fixed -> 0 units', r.units === 0);
+r = compute({ fixed: 0.3, price: 0.3, variable: 0.1, target: 0 });
+check('float case 0.3/0.2 -> 2 units', r.units === 2);
+check('price = cost rejected', !!compute({ fixed: 100, price: 5, variable: 5, target: 0 }).error);
+check('price < cost rejected', !!compute({ fixed: 100, price: 5, variable: 7, target: 0 }).error);
+check('zero price rejected', !!compute({ fixed: 100, price: 0, variable: 0, target: 0 }).error);
+check('negative fixed rejected', !!compute({ fixed: -1, price: 5, variable: 1, target: 0 }).error);
+check('negative target rejected', !!compute({ fixed: 1, price: 5, variable: 1, target: -5 }).error);
+check('NaN rejected', !!compute({ fixed: NaN, price: 5, variable: 1, target: 0 }).error);
+process.exit(fails ? 1 : 0);

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Break-even calculator – Tallybench</title>
+<meta name="description" content="Find how many sales you need to cover your costs. Enter fixed costs, price and cost per unit to get your break-even point, plus the sales needed for a target profit. Runs in your browser.">
+<link rel="canonical" href="https://tallybench.github.io/break-even-calculator.html">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="./">Tally<span>bench</span></a>
+<nav><a href="markup-margin-calculator.html">Markup &amp; margin</a><a href="hourly-rate-calculator.html">Hourly rate</a><a href="break-even-calculator.html">Break-even</a><a href="about.html">About</a></nav>
+</div></header>
+<main class="wrap">
+<h1>Break-even calculator</h1>
+<p class="lead">How many sales do you need before you stop losing money? Enter your fixed costs for a period, what you charge, and what each sale costs you to deliver.</p>
+
+<form class="card" id="f" novalidate>
+<label for="fixed">Fixed costs for the period ($)</label>
+<input id="fixed" inputmode="decimal" placeholder="rent, software, insurance… e.g. 2000 per month" autocomplete="off">
+<div class="row">
+<div><label for="price">Selling price per unit ($)</label><input id="price" inputmode="decimal" placeholder="e.g. 50" autocomplete="off"></div>
+<div><label for="variable">Cost per unit ($)</label><input id="variable" inputmode="decimal" placeholder="materials, fees… e.g. 20" autocomplete="off"></div>
+</div>
+<label for="target">Target profit for the period ($, optional)</label>
+<input id="target" inputmode="decimal" placeholder="0 if you only want break-even" autocomplete="off">
+<button type="submit">Calculate</button><button type="button" class="secondary" id="reset">Reset</button>
+<div class="err" id="err" role="alert"></div>
+<div class="results" id="out" aria-live="polite" hidden>
+<div class="stat"><div class="k">Break-even units</div><div class="v" id="r-units"></div></div>
+<div class="stat"><div class="k">Break-even revenue</div><div class="v" id="r-revenue"></div></div>
+<div class="stat"><div class="k">Profit per unit</div><div class="v" id="r-contrib"></div></div>
+<div class="stat"><div class="k">Per-unit margin</div><div class="v" id="r-contribpct"></div></div>
+<div class="stat"><div class="k">Units for target profit</div><div class="v" id="r-tunits"></div></div>
+<div class="stat"><div class="k">Revenue for target profit</div><div class="v" id="r-trevenue"></div></div>
+</div>
+</form>
+
+<h2>How it works</h2>
+<ul>
+<li>Profit per unit = selling price − cost per unit</li>
+<li>Break-even units = fixed costs ÷ profit per unit, rounded up to a whole unit</li>
+<li>Break-even revenue = break-even units × selling price</li>
+<li>Units for a target profit = (fixed costs + target profit) ÷ profit per unit, rounded up</li>
+</ul>
+<p><strong>Fixed costs</strong> are the bills you pay whether or not you sell anything. <strong>Cost per unit</strong> is what each extra sale costs you: materials, payment fees, shipping, or the contractor you pay per job. Make sure the fixed-cost period (a month, a year) matches the period you want the answer for.</p>
+<p>If your cost per unit isn't clear, the <a href="markup-margin-calculator.html">markup and margin calculator</a> can help you price each unit, and the <a href="hourly-rate-calculator.html">hourly rate calculator</a> covers pricing your own time.</p>
+<p class="note">A simplified model: it assumes a single product at a constant price and constant cost per unit, and ignores taxes. Results are arithmetic only and are not financial, tax or legal advice.</p>
+</main>
+<footer><div class="wrap"><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><p>© 2026 Tallybench</p></div></footer>
+<script src="break-even.js"></script>
+</body>
+</html>
