@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Freelance hourly rate calculator – Tallybench</title>
+<meta name="description" content="Work out what to charge per hour. Enter the income you want, your expenses, tax set-aside, time off and billable hours. Runs in your browser; nothing is stored.">
+<link rel="canonical" href="https://tallybench.github.io/hourly-rate-calculator.html">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="./">Tally<span>bench</span></a>
+<nav><a href="markup-margin-calculator.html">Markup &amp; margin</a><a href="hourly-rate-calculator.html">Hourly rate</a><a href="about.html">About</a></nav>
+</div></header>
+<main class="wrap">
+<h1>Freelance hourly rate calculator</h1>
+<p class="lead">Start from the income you want and work backwards to the hourly rate you need to charge. All fields are your own estimates.</p>
+
+<form class="card" id="f" novalidate>
+<label for="takeHome">Desired yearly take-home income ($)</label>
+<input id="takeHome" inputmode="decimal" placeholder="e.g. 60000" autocomplete="off">
+<label for="expenses">Yearly business expenses ($)</label>
+<input id="expenses" inputmode="decimal" placeholder="software, insurance, equipment… e.g. 6000" autocomplete="off">
+<label for="taxPct">Share of revenue to set aside for tax (%)</label>
+<input id="taxPct" inputmode="decimal" placeholder="your own estimate, e.g. 25" autocomplete="off">
+<div class="row">
+<div><label for="weeksOff">Weeks off per year</label><input id="weeksOff" inputmode="decimal" placeholder="vacation, holidays, sick, e.g. 5" autocomplete="off"></div>
+<div><label for="hoursPerWeek">Working hours per week</label><input id="hoursPerWeek" inputmode="decimal" placeholder="e.g. 40" autocomplete="off"></div>
+</div>
+<label for="billablePct">Share of working time you can bill (%)</label>
+<input id="billablePct" inputmode="decimal" placeholder="admin and sales time isn't billable, e.g. 60" autocomplete="off">
+<button type="submit">Calculate</button><button type="button" class="secondary" id="reset">Reset</button>
+<div class="err" id="err" role="alert"></div>
+<div class="results" id="out" aria-live="polite" hidden>
+<div class="stat"><div class="k">Hourly rate</div><div class="v" id="r-hourly"></div></div>
+<div class="stat"><div class="k">Per 8-hour day</div><div class="v" id="r-daily"></div></div>
+<div class="stat"><div class="k">Revenue needed / year</div><div class="v" id="r-revenue"></div></div>
+<div class="stat"><div class="k">Revenue needed / month</div><div class="v" id="r-monthly"></div></div>
+<div class="stat"><div class="k">Billable hours / year</div><div class="v" id="r-hours"></div></div>
+</div>
+</form>
+
+<h2>How it works</h2>
+<ul>
+<li>Revenue needed = (take-home income + business expenses) ÷ (1 − tax set-aside %)</li>
+<li>Billable hours = (52 − weeks off) × working hours per week × billable %</li>
+<li>Hourly rate = revenue needed ÷ billable hours</li>
+</ul>
+<p>Most freelancers can only bill a portion of their working week, because finding clients, invoicing and admin take time too. If you leave that out, you'll set your rate too low.</p>
+<p class="note">The tax set-aside is a simple estimate you provide, not a tax calculation. Real tax depends on your situation. Results are arithmetic only and are not financial, tax or legal advice.</p>
+</main>
+<footer><div class="wrap"><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><p>© 2026 Tallybench</p></div></footer>
+<script src="hourly-rate.js"></script>
+</body>
+</html>

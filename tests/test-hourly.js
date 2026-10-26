@@ -1,0 +1,26 @@
+// Sanity tests for the hourly-rate maths. Run: node tests/test-hourly.js
+global.window = {};
+global.document = { getElementById: () => null };
+require('../hourly-rate.js');
+const { compute } = global.window.TallybenchHourly;
+const near = (a, b, e = 0.005) => Math.abs(a - b) < e;
+let fails = 0;
+const check = (n, ok) => { if (!ok) { fails++; console.log('FAIL', n); } else console.log('ok  ', n); };
+const base = { takeHome: 60000, expenses: 6000, taxPct: 25, weeksOff: 5, hoursPerWeek: 40, billablePct: 60 };
+let r = compute(base);
+check('revenue 88000', near(r.revenue, 88000));
+check('billable hours 1128', near(r.billableHours, 1128));
+check('hourly 78.01', near(r.hourly, 88000 / 1128));
+check('daily = 8x hourly', near(r.daily, r.hourly * 8));
+check('monthly = revenue/12', near(r.monthlyRevenue, 88000 / 12));
+r = compute({ ...base, taxPct: 0, expenses: 0, weeksOff: 0, billablePct: 100 });
+check('simple case 60000/2080', near(r.hourly, 60000 / 2080));
+check('tax 100 rejected', !!compute({ ...base, taxPct: 100 }).error);
+check('weeks off 52 rejected', !!compute({ ...base, weeksOff: 52 }).error);
+check('billable 0 rejected', !!compute({ ...base, billablePct: 0 }).error);
+check('billable 101 rejected', !!compute({ ...base, billablePct: 101 }).error);
+check('hours 0 rejected', !!compute({ ...base, hoursPerWeek: 0 }).error);
+check('negative expenses rejected', !!compute({ ...base, expenses: -1 }).error);
+check('zero take-home rejected', !!compute({ ...base, takeHome: 0 }).error);
+check('NaN rejected', !!compute({ ...base, takeHome: NaN }).error);
+process.exit(fails ? 1 : 0);
