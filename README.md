@@ -18,3 +18,8 @@ Copyright (c) 2026 Tallybench. All rights reserved. See [LICENSE](LICENSE).
 ## Support
 
 Tallybench is a free service provided as is. There is no customer support. Bugs and suggestions are welcome as GitHub issues, but we can't promise a reply or a fix.
+
+## Do not delete
+
+- `googlecfd246d971fd746e.html` – Google Search Console ownership verification. Removing it un-verifies the site.
+- `0c6b3ba86b32b12f179aecc213ebdaaf.txt` – IndexNow key file used for Bing indexing pings.
