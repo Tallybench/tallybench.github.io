@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Markup and margin calculator – Tallybench</title>
+<meta name="description" content="Free markup and margin calculator. Enter a cost and a markup %, margin % or selling price and get the rest. Converts between markup and margin. Runs in your browser; nothing is stored.">
+<link rel="canonical" href="https://tallybench.github.io/markup-margin-calculator.html">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="./">Tally<span>bench</span></a>
+<nav><a href="markup-margin-calculator.html">Markup &amp; margin</a><a href="about.html">About</a></nav>
+</div></header>
+<main class="wrap">
+<h1>Markup and margin calculator</h1>
+<p class="lead">Pick what you know, enter your cost, and get the selling price, profit, markup % and margin %.</p>
+
+<form class="card" id="f" novalidate>
+<div class="row">
+<div><label for="cost">Cost (what it costs you)</label><input id="cost" inputmode="decimal" placeholder="e.g. 80" autocomplete="off"></div>
+<div><label for="mode">I know my…</label>
+<select id="mode"><option value="markup">markup %</option><option value="margin">margin %</option><option value="price">selling price</option></select></div>
+</div>
+<label for="val" id="vallabel">Markup %</label>
+<input id="val" inputmode="decimal" placeholder="e.g. 25" autocomplete="off">
+<button type="submit">Calculate</button><button type="button" class="secondary" id="reset">Reset</button>
+<div class="err" id="err" role="alert"></div>
+<div class="results" id="out" aria-live="polite" hidden>
+<div class="stat"><div class="k">Selling price</div><div class="v" id="r-price"></div></div>
+<div class="stat"><div class="k">Profit</div><div class="v" id="r-profit"></div></div>
+<div class="stat"><div class="k">Markup</div><div class="v" id="r-markup"></div></div>
+<div class="stat"><div class="k">Margin</div><div class="v" id="r-margin"></div></div>
+</div>
+</form>
+
+<h2>Markup vs margin: what's the difference?</h2>
+<p><strong>Markup</strong> is profit as a percentage of your <em>cost</em>. <strong>Margin</strong> is profit as a percentage of your <em>selling price</em>. The same sale gives two different percentages, and mixing them up is a common way to under-price a job.</p>
+<p>Example: something costs you $80 and you sell it for $100. Profit is $20. Markup is 20 ÷ 80 = 25%. Margin is 20 ÷ 100 = 20%.</p>
+<h3>Formulas</h3>
+<ul>
+<li>Selling price = cost × (1 + markup %)</li>
+<li>Selling price = cost ÷ (1 − margin %)</li>
+<li>Markup % = (price − cost) ÷ cost</li>
+<li>Margin % = (price − cost) ÷ price</li>
+</ul>
+
+<h2>Quick conversion table</h2>
+<table id="tbl"><thead><tr><th>Markup</th><th>Equals margin</th></tr></thead><tbody></tbody></table>
+<p class="note">Results are arithmetic only and ignore taxes, fees and discounts. This is not financial or tax advice.</p>
+</main>
+<footer><div class="wrap"><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><p>© 2026 Tallybench</p></div></footer>
+<script src="markup-margin.js"></script>
+</body>
+</html>
