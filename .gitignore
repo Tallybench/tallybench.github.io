@@ -1,0 +1,9 @@
+# Paid products must never be committed: this repo is public.
+*.xlsx
+*.xls
+*.zip
+tallybench-product/
+# Never commit keys or tokens.
+.env
+*.key
+*secret*
