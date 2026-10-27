@@ -17,7 +17,7 @@ Copyright (c) 2026 Tallybench. All rights reserved. See [LICENSE](LICENSE).
 
 ## Support
 
-Tallybench is a free service provided as is. There is no customer support. Bugs and suggestions are welcome as GitHub issues, but we can't promise a reply or a fix.
+Tallybench is a free service provided as is. There is no customer support. Bugs and suggestions can be emailed to tallybench.io@gmail.com, but we can't promise a reply or a fix. Outside changes are not accepted; pull requests and issues may be closed without review.
 
 ## Do not delete
 
